@@ -91,4 +91,20 @@ def getWord():
     print(word_list)
     return word_list
 
-makeWordToJson(getWord())
+def textToJson():
+    import json
+
+    # อ่านไฟล์ข้อความและแปลงเป็น list
+    with open("The Oxford 3000.txt", "r", encoding="utf-8") as file:
+        words = file.readlines()
+        words = [word.strip() for word in words]
+
+    # สร้าง dictionary จาก list
+    data = {"words": words}
+
+    # เขียนข้อมูลลงในไฟล์ JSON
+    with open("The_Oxford_3000.json", "w", encoding="utf-8") as file:
+        json.dump(data, file, ensure_ascii=False, indent=4)
+
+# makeWordToJson(getWord())
+textToJson()

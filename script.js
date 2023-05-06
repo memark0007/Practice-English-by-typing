@@ -59,6 +59,26 @@ function getMyWord() {
             .catch((error) => console.error(error));
     });
 }
+
+function getMyword2() {
+    return new Promise((resolve, reject) => {
+        // อ่านข้อมูลจากไฟล์ JSON
+        fetch("The_Oxford_3000.json")
+            .then(response => response.json())
+            .then(data => {
+                // สกัด array ของคำจาก Object
+                const wordsList = data.words || [];
+
+                // แสดงผล array ของคำ
+                console.log(wordsList);
+                words = wordsList;
+                resolve(wordsList);
+            })
+            .catch(error => {
+                console.error("Error fetching JSON file:", error);
+            });
+    })
+}
 async function addWordToHistoryEl(wordHistory) {
     const lastWord = wordHistory[wordHistory.length - 1];
 
@@ -109,7 +129,7 @@ async function addWordToHistoryEl(wordHistory) {
         }
 
         meaning.definitions.forEach((definitionObject) => {
-            addMeaningToMeaningsEl(meaningsEl, definitionObject,meaning.partOfSpeech);
+            addMeaningToMeaningsEl(meaningsEl, definitionObject, meaning.partOfSpeech);
         });
     });
 
@@ -213,7 +233,7 @@ textEl.addEventListener("input", async (e) => {
 
 // Main function to run the application
 async function main() {
-    await getMyWord();
+    await getMyword2();
     console.log("words", words);
     await displayWordToUI();
     await getWordFormDict(randomWord);
