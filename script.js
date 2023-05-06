@@ -213,12 +213,12 @@ textEl.addEventListener("input", async (e) => {
 
 // Main function to run the application
 async function main() {
-    console.log("randomWord:", randomWord)
     await getMyWord();
     console.log("words", words);
     await displayWordToUI();
     await getWordFormDict(randomWord);
     await addWordToHistoryEl(wordHistory);
+    console.log("randomWord:", randomWord)
 
 }
 
