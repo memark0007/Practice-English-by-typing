@@ -48,7 +48,7 @@ function getMyWord() {
         fetch("The Oxford 3000.txt")
             .then((response) => response.text())
             .then((data) => {
-                const lines = data.split("\r\n");
+                const lines = data.split("\n");
                 lines.forEach((line) => {
                     vocabulary.push(line);
                 });
